@@ -1,0 +1,9 @@
+- platform: owntracks
+- platform: unifi_direct
+  host: !secret unifi_host
+  username: !secret unifi_user
+  password: !secret unifi_pass
+  track_new_devices: false
+- platform: tile
+  username: !secret tile_user
+  password: !secret tile_pass

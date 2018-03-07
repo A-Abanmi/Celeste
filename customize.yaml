@@ -1,0 +1,26 @@
+script.bdoff:
+  hidden: true
+script.bdon:
+  hidden: true
+script.hoff:
+  hidden: true
+script.movie:
+  hidden: true
+script.watching:
+  hidden: true
+script.alarmfd:
+  hidden: true
+script.alarmbd:
+  hidden: true
+script.ledon:
+  hidden: true
+script.Lights:
+  hidden: true
+script.dim:
+  hidden: true
+script.bright:
+  hidden: true
+script.ledonb:
+  hidden: true
+group.brightablelr:
+  hidden: true

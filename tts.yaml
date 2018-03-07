@@ -1,0 +1,4 @@
+platform: google
+cache: true
+cache_dir: !secret tts_cache_dir
+time_memory: 300

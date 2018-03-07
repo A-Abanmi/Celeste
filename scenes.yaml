@@ -1,0 +1,66 @@
+- name: Shutdown
+  entities:
+    group.lights: off
+    group.tv: off
+    group.bedroom: off
+    switch.pucks: off
+- name: Sleep
+  entities:
+    group.bedroom: off
+
+# Obsolete
+#- name: Bedroom Movie
+#  entities:
+#    light.main:
+#      state: off
+#    light.led:
+#      state: on
+#    switch.pucks: on
+#    switch.whiteblue: off
+#    switch.brightness: off
+#- name: Movie
+#  entities:
+#    group.lamp:
+#      state: off
+#    light.lb:
+#      state: on
+#  #    color_name: fuchsia
+#   #   brightness_pct: 10
+#    light.rb:
+#      state: on
+#      color_name: fuchsia
+#      brightness_pct: 10
+#    light.lr_led:
+#      state: on
+#      media_player.living_room: on
+#      media_player.denon_avrs900w: on
+#- name: Dinner
+#  entities:
+#    group.lamp:
+#      state: on
+#    light.lb:
+#      state: on
+#      kelvin: 2700
+#      brightness: 255
+#    light.rb:
+#      state: on
+#      kelvin: 2700
+#      brightness: 255
+#    light.lr_led:
+#      state: off
+#- name: Pause
+#  entities:
+#    light.rb:
+#      state: on
+#      kelvin: 2700
+#      brightness: 255
+#    light.lb:
+#      state: on
+#      kelvin: 2700
+#      brightness: 255
+#    group.lamp:
+#      state: on
+#      brightness: 50
+
+#      media_player.living_room: on
+#      media_player.denon_avrs900w: on

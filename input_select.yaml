@@ -1,0 +1,21 @@
+stairs:
+  name: Auto Light
+  options:
+    - Downstairs
+    - Upstairs
+    - None
+  initial: None
+  icon: mdi:weather-rainy
+presence:
+  name: Welcome
+  options:
+    - Home
+    - Not Home
+    - None
+  initial: None
+notify:
+  name: Notify
+  options:
+    - Silent
+    - Loud
+  initial: Loud

@@ -1,0 +1,22 @@
+
+- platform: mqtt
+  name: Front Door
+  state_topic: "smartthings/Front Door/contact/state"
+  payload_on: "closed"
+  payload_off: "open"
+- platform: mqtt
+  name: Balcony Door
+  state_topic: "smartthings/Balcony Door/contact/state"
+  payload_on: "closed"
+  payload_off: "open"
+- platform: mqtt
+  name: Motion Sensor
+  state_topic: "smartthings/Xiaomi Motion/motion/state"
+  payload_on: "inactive"
+  payload_off: "active"
+- platform: mqtt
+  name: "Bedlight"
+  state_topic: "hass/garagedoor"
+  device_class: opening
+  payload_on: "1"
+  payload_off: "0"

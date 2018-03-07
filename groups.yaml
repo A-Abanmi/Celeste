@@ -1,0 +1,199 @@
+
+# default_view:
+#   view: yes
+#   icon: mdi:home
+#   entities:
+#   - group.Bedroom
+#   - group.Lights
+#   - group.Cornflakes
+#   - group.tv
+#   - group.Monitoring
+#   - group.dev
+ main:
+  name: Main
+  view: yes
+  entities:
+    - group.lights
+    - group.bedroom
+    - group.Cornflakes
+    - device_tracker.pixel_pixel
+    - group.office
+
+ secondary_view:
+  name: secondary
+  view: yes
+  entities:
+    - group.trackers
+    - group.security
+    - media_player.master_bedroom_speaker
+    - media_player.living_room_speaker
+    - group.stairs
+    - group.monitoring
+    - group.tv
+
+ dev_view:
+  name: Dev
+  view: yes
+  entities:
+    - group.dev
+    - group.info
+    - group.bl
+    - group.lamp
+    - group.stitches
+    - group.belkin_switch
+
+#Guest tablet view
+ lr_view:
+  name: Guest Control
+  view: yes
+  entities:
+    - group.lights
+    - media_player.denon_avrs900w
+
+ bedroom:
+  name: Bedroom
+  entities:
+    - light.main
+    - light.bedroom_lamp
+    - light.bedroom_led
+    - light.tv_led
+
+ lights:
+  name: Living Room
+  entities:
+    - sensor.lr_temp
+    - sensor.lr_hum
+    - group.bl
+    - group.lamp
+    - light.lr_led
+    - input_number.lr_br
+    - group.tvlr
+
+ tv:
+  name: TV
+  entities:
+    - media_player.denon
+    - media_player.chromecast
+
+ cornflakes:
+  name: Cornflakes
+  entities:
+    - sensor.temp
+    - sensor.hum
+    - light.daylight
+    - switch.heating
+
+ dev:
+  name: Dev
+  entities:
+    - switch.living_space
+    - sensor.yr_symbol
+    - sun.sun
+    - input_number.porch_animation_speed
+    - input_select.notify
+    - input_select.presence
+    - binary_sensor.bedlight
+    - scene.shutdown
+    - scene.sleep
+    - media_player.mpd
+    - light.porch_strip
+    - light.bedledb
+    - automation.yep_youre_here
+
+ monitoring:
+  name: Front Door
+  entities:
+    - camera.front_door
+    - camera.dome
+
+ info:
+  name: Info
+  entities:
+    - sensor.pihole_ads_blocked_today
+    - sensor.pihole_ads_percentage_blocked_today
+    - sensor.pws_alerts
+    - sensor.pws_temp_f
+
+#underdev
+ stitches:
+  name: Switches
+  entities:
+    - switch.channel_up__channel_down
+    - switch.pauseplay
+    - switch.soundbar
+    - switch.tv
+    - switch.tv_bd
+    - switch.tv_channel__hdmi
+    - switch.volume_up__volume_down
+
+ brightablelr:
+  name: brightableslr
+  entities:
+    - group.bl
+    - group.lamp
+
+ bl:
+  name: Rear
+  entities:
+    - light.rb
+    - light.lb
+
+ stairs:
+  name: Stairs
+  entities:
+    - sensor.stairs_temperature
+    - sensor.stairs_humidity
+    - light.stairs
+    - input_select.stairs
+    - group.stairsauto
+
+ stairsauto:
+  name: Auto
+  entities:
+    - automation.turn_on_bd
+    - automation.turn_on_lr
+
+ lamp:
+  name: Lamp
+  entities:
+    - light.lamp_1
+    - light.lamp_2
+    - light.lamp_3
+
+ tvlr:
+  name: Auto
+  entities:
+    - automation.idle_to_pause
+    - automation.idle_to_play
+    - automation.pause_to_idle
+    - automation.pause_to_play
+    - automation.play_to_idle
+    - automation.play_to_pause
+
+ security:
+  name: Security
+  entities:
+    - binary_sensor.front_door
+    - binary_sensor.balcony_door
+    - binary_sensor.motion_sensor
+    - sensor.upsairs_pir
+
+ trackers:
+  name: trackers
+  entities:
+    - device_tracker.pixel_pixel
+    - device_tracker.pixelxl
+    - device_tracker.rbs
+    - device_tracker.tile_keys
+    - device_tracker.tile_pixel_2_xl
+
+ office:
+  name: Office
+  entities:
+    - light.office_led
+    - light.office_light
+
+ belkin_switch:
+  name: Belkin Switch
+  entities:
+    - light.belkin_switch

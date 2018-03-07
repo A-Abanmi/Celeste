@@ -1,0 +1,455 @@
+#Reptile tank
+- alias: Cornflakes Daylight On
+  hide_entity: true
+  trigger:
+    platform: sun
+    event: sunrise
+  action:
+    service: light.turn_on
+    entity_id: light.daylight
+
+- alias: Cornflakes Daylight off
+  hide_entity: true
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    service: light.turn_off
+    entity_id: light.daylight
+
+- alias: Hot
+  hide_entity: true
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.temp
+    above: 95
+    below: 120
+  action:
+    service: switch.turn_off
+    entity_id: switch.heating
+
+- alias: Cold
+  hide_entity: true
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.temp
+    above: 0
+    below: 90
+  action:
+    service: switch.turn_on
+    entity_id: switch.heating
+
+- alias: Warning
+  hide_entity: true
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.temp
+    above: 96
+  action:
+    service: notify.telegram
+    data:
+      title: 'Cornflakes is feeling hot'
+      message: 'Help its  {{ states.sensor.temp.state }} !!!!'
+
+#Home Theater
+- alias: Play to idle
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: media_player.chromecast
+    from: playing
+    to: idle
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+    service: script.turn_on
+    entity_id: script.lights
+
+- alias: Play to pause
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: media_player.chromecast
+    from: playing
+    to: paused
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+    service: script.turn_on
+    entity_id: script.dim
+
+- alias: Idle to play
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: media_player.chromecast
+    from: idle
+    to: playing
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+    service: script.turn_on
+    entity_id: script.movie
+
+- alias: Idle to pause
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: media_player.chromecast
+    from: idle
+    to: paused
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+    service: script.turn_on
+    entity_id: script.movie
+
+- alias: Pause to play
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: media_player.chromecast
+    from: paused
+    to: playing
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+    service: script.turn_on
+    entity_id: script.watching
+
+- alias: Pause to idle
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: media_player.chromecast
+    from: paused
+    to: idle
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+    service: script.turn_on
+    entity_id: script.light
+
+#Quickbuttons
+- alias: AIO LR+
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: smartthings/Living Room AIO/button/state
+    payload: 'pushed'
+  action:
+    service: script.turn_on
+    entity_id: script.lights
+
+- alias: AIO LR-
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: smartthings/Living Room AIO/button/state
+    payload: 'held'
+  action:
+    service: script.turn_on
+    entity_id: script.hoff
+
+- alias: AIO BD+
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: smartthings/Bedroom AIO/button/state
+    payload: 'pushed'
+  action:
+    service: script.turn_on
+    entity_id: script.bdon
+
+- alias: AIO BD-
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: smartthings/Bedroom AIO/button/state
+    payload: 'held'
+  action:
+    service: script.turn_on
+    entity_id: script.bdoff
+#Stairs LED control
+- alias: State DOWN
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor
+    to: 'off'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.stairs
+      option: Downstairs
+
+- alias: State UP
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: sensor.upsairs_pir
+    to: 'motion detected'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.stairs
+      option: Upstairs
+
+- alias: Turn on LR
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: input_select.stairs
+    from: "Upstairs"
+    to: "Downstairs"
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+    service: script.turn_on
+    entity_id:
+    - script.lights
+    - script.bdoff
+
+- alias: Turn on bd
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: input_select.stairs
+    from: "Downstairs"
+    to: "Upstairs"
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+    service: script.turn_on
+    entity_id:
+    - script.hoff
+    - script.bdon
+
+- alias: Stairsdown
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_sensor
+    to: 'off'
+  action:
+    service: light.turn_on
+    entity_id: light.stairs
+
+- alias: Stairsup
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.upsairs_pir
+    to: 'motion detected'
+  action:
+    service: light.turn_on
+    entity_id: light.stairs
+
+- alias: Magico
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: sensor.upsairs_pir
+    to: 'standby'
+    for:
+      seconds: 180
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.stairs
+
+- alias: Magico
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_sensor
+    to: 'on'
+    for:
+      seconds: 5
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.stairs
+
+#Security System
+- alias: ALERT
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: device_tracker.pixel_pixel
+    state: 'not_home'
+  action:
+    service: notify.telegram
+    data:
+      title: 'Front Door'
+      message: 'Front door has been opened!'
+
+- alias: ALERTs
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: device_tracker.pixel_pixel
+    state: 'not_home'
+  action:
+    service: script.turn_on
+    entity_id: script.alarmfd
+
+- alias: State home
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: device_tracker.pixel_pixel
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: input_select.prenece
+    state: Not Home
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.presence
+      option: Home
+
+- alias: State not home
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: device_tracker.pixel_pixel
+    to: 'not_home'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.presence
+      option: Not Home
+
+- alias: Bye
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: input_select.presence
+    from: 'Home'
+    to: 'Not Home'
+  action:
+    service: notify.html_unnamed_device_3
+    data:
+      title: 'Alarm Locked'
+      message: 'House turned on lockdown mode at {{now().strftime("%H:%M:%S on %d/%m")}}'
+
+- alias: WelcomeAction
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.front_door
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: input_select.presence
+    state: "Home"
+  action:
+  - service: tts.google_say
+    entity_id: media_player.living_room_speaker
+    data:
+      message: 'Welcome Home'
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.presence
+      option: None
+
+- alias: WelcomeActionLights
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.front_door
+    to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: below_horizon
+      - condition: state
+        entity_id: input_select.presence
+        state: "Home"
+  action:
+  - service: script.turn_on
+    entity_id: script.lights
+
+- alias: Alarm
+  hide_entity: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.front_door
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: input_select.notify
+    state: Loud
+  action:
+    service: tts.google_say
+    entity_id: media_player.master_bedroom_speaker
+    data:
+      message: Front door has been opened
+
+- alias: ALERTBs
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.balcony_door
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: device_tracker.pixel_pixel
+    state: 'not_home'
+  action:
+    service: script.turn_on
+    entity_id: script.alarmbd
+
+- alias: ALERTB
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.balcony_door
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: device_tracker.pixel_pixel
+    state: 'not_home'
+  action:
+    service: notify.telegram
+    data:
+      title: 'Balcony Door'
+      message: 'Balcony door has been opened!'
+
+- alias: "LR-B"
+  initial_state: true
+  hide_entity: true
+  trigger:
+    - platform: state
+      entity_id: input_number.lr_br
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: group.brightablelr
+        brightness: '{{ trigger.to_state.state | int }}'

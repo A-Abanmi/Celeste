@@ -1,0 +1,57 @@
+- platform: octoprint
+  name: OctoPrint
+  monitored_conditions:
+    - Current State
+    - Temperatures
+    - Job Percentage
+
+- platform: wunderground
+  api_key: !secret wunderground_api
+  monitored_conditions:
+    - alerts
+    - temp_f
+
+- platform: pi_hole
+  host: !secret pi_hole
+  monitored_conditions:
+    - ads_blocked_today
+    - ads_percentage_today
+#ESP8266 sensor
+- platform: mqtt
+  state_topic: "ha/temperature"
+  name: "Temp"
+  unit_of_measurement: "°C"
+  qos: 1
+
+- platform: mqtt
+  state_topic: "ha/humidity"
+  name: "Hum"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  state_topic: "celeste/stairsh"
+  name: "Stairs Humidity"
+  unit_of_measurement: "%"
+  value_template: '{{ value_json.humidity | round(1) }}'
+
+- platform: mqtt
+  state_topic: "celeste/upstairspir"
+  name: "upsairs PIR"
+  value_template: '{{ value_json.motion }}'
+
+- platform: mqtt
+  state_topic: "celeste/stairst"
+  name: "Stairs Temperature"
+  unit_of_measurement: "°F"
+  value_template: '{{ value_json.temperature | round(1) }}'
+
+#Smartthings
+- platform: mqtt
+  state_topic: "smartthings/Temp/Hum/temperature/state"
+  name: "LR Temp"
+  unit_of_measurement: "°F"
+
+- platform: mqtt
+  state_topic: "smartthings/Temp/Hum/humidity/state"
+  name: "LR Hum"
+  unit_of_measurement: "%"

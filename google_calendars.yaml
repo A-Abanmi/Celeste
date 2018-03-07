@@ -1,0 +1,19 @@
+
+- cal_id: '#contacts@group.v.calendar.google.com'
+  entities:
+  - device_id: contacts
+    name: Contacts
+    track: true
+
+- cal_id: srxvx2@gmail.com
+  entities:
+  - device_id: srxvx2gmailcom
+    name: cal
+    track: true
+    search: "Feed me!"
+
+- cal_id: en.usa#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_united_states
+    name: Holidays in United States
+    track: true

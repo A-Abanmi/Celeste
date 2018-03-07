@@ -1,0 +1,49 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: imperial
+  time_zone: America/Los_Angeles
+  customize: !include customize.yaml
+frontend:
+config:
+http:
+  api_password: !secret api_password
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  base_url: !secret base_url
+
+updater:
+discovery:
+history:
+logbook:
+sun:
+
+mqtt:
+  broker: !secret mqtt_broker_host
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  discovery: true
+  discovery_prefix: smartthings
+  
+device_tracker: !include device_tracker.yaml
+octoprint: !include octoprint.yaml
+zone: !include zone.yaml
+camera: !include camera.yaml
+google: !include google.yaml
+google_assistant: !include google_assistant.yaml
+tts: !include tts.yaml
+telegram_bot: !include telegram_bot.yaml
+notify: !include notify.yaml
+binary_sensor: !include brinary_sensor.yaml
+light: !include light.yaml
+input_select: !include input_select.yaml
+input_number: !include input_number.yaml
+sensor: !include sensor.yaml
+switch: !include switch.yaml
+media_player: media_player.yaml
+scene: !include scenes.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

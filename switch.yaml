@@ -1,0 +1,66 @@
+#ESP8266 IR Sender
+- platform: mqtt
+  name: "TV"
+  state_topic: "home/IRtoMQTT"
+  command_topic: "home/commands/IR_SAMSUNG"
+  payload_on: "1637937167"
+  payload_off: "1637937167"
+  optimistic: false
+
+- platform: mqtt
+  name: "Pause/Play"
+  state_topic: "home/IRtoMQTT"
+  command_topic: "home/commands/IR_SAMSUNG"
+  payload_on: "4294967295"
+  payload_off: "1637879537"
+  optimistic: false
+
+- platform: mqtt
+  name: "TV Channel / HDMI"
+  state_topic: "home/IRtoMQTT"
+  command_topic: "home/commands/IR_SAMSUNG"
+  payload_on: "1637937677"
+  payload_off: "1637878517"
+  optimistic: false
+
+- platform: mqtt
+  name: "TV BD"
+  state_topic: "home/IRtoMQTT"
+  command_topic: "home/commands/IR_SAMSUNG"
+  payload_on: "2704"
+  payload_off: "2704"
+  optimistic: false
+
+- platform: mqtt
+  name: "Soundbar"
+  state_topic: "home/IRtoMQTT"
+  command_topic: "home/commands/IR_SAMSUNG"
+  payload_on: "16712445"
+  payload_off: "16712445"
+  optimistic: false
+
+- platform: mqtt
+  name: "Channel Up / Channel Down"
+  state_topic: "home/IRtoMQTT"
+  command_topic: "home/commands/IR_SAMSUNG"
+  payload_on: "1637896367"
+  payload_off: "1637929007"
+  optimistic: false
+
+- platform: mqtt
+  name: "Volume Up / Volume Down"
+  state_topic: "home/IRtoMQTT"
+  command_topic: "home/commands/IR_SAMSUNG"
+  payload_on: "1637888207"
+  payload_off: "1637920847"
+  optimistic: false
+
+#ESP8266 433mhz
+- platform: mqtt
+  name: "Heating"
+  state_topic: "home/433toMQTT"
+  command_topic: "home/commands/MQTTto433/PLSL_180/433_1"
+  payload_on: "1332675"
+  payload_off: "1332684"
+  optimistic: false
+  retain: true

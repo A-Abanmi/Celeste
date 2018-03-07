@@ -1,0 +1,3 @@
+project_id: !secret google_project_id
+client_id: !secret google_a_client_id
+access_token: !secret google_access_token

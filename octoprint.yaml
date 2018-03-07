@@ -1,0 +1,4 @@
+host: !secret op_host
+api_key: !secret op_api
+bed: true
+number_of_tools: 2

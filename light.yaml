@@ -1,0 +1,135 @@
+
+#ESP8266+relay
+- platform: mqtt
+  name: "Bedroom LED"
+  state_topic: "/house/switchConfirm1/"
+  command_topic: "/house/switch1/"
+  payload_on: "1"
+  payload_off: "0"
+  qos: 0
+  retain: true
+#Sonoff
+- platform: mqtt
+  name: "LR LED"
+  command_topic: "cmnd/sonoff/power"
+  state_topic: "stat/sonoff/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+#Smartthings
+- platform: mqtt
+  name: "lamp 1"
+  state_topic: "smartthings/1lamp/switch/state"
+  command_topic: "smartthings/1lamp/switch/cmd"
+  brightness_state_topic: "smartthings/1lamp/level/state"
+  brightness_command_topic: "smartthings/1lamp/level/cmd"
+  brightness_scale: 100
+  payload_on: "on"
+  payload_off: "off"
+
+- platform: mqtt
+  name: "lamp 2"
+  state_topic: "smartthings/2Lamp/switch/state"
+  command_topic: "smartthings/2Lamp/switch/cmd"
+  brightness_state_topic: "smartthings/2Lamp/level/state"
+  brightness_command_topic: "smartthings/2Lamp/level/cmd"
+  brightness_scale: 100
+  payload_on: "on"
+  payload_off: "off"
+
+- platform: mqtt
+  name: "lamp 3"
+  state_topic: "smartthings/3Lamp/switch/state"
+  command_topic: "smartthings/3Lamp/switch/cmd"
+  brightness_state_topic: "smartthings/3Lamp/level/state"
+  brightness_command_topic: "smartthings/3Lamp/level/cmd"
+  brightness_scale: 100
+  payload_on: "on"
+  payload_off: "off"
+#Yeelight RGB
+- platform: yeelight
+  devices:
+    192.168.0.81:
+      name: RB
+      save_on_change: True
+    192.168.0.82:
+      name: LB
+      save_on_change: True
+    192.168.0.83:
+      name: Main
+      transition: 5000
+      save_on_change: True
+#ESP8266 433mhz + 433mhz socket
+- platform: mqtt
+  name: "Bedroom Lamp"
+  state_topic: "home/433toMQTT"
+  command_topic: "home/commands/MQTTto433/PLSL_180/433_1"
+  payload_on: "5330371"
+  payload_off: "5330380"
+  retain: true
+
+- platform: mqtt
+  name: "TV LED"
+  state_topic: "home/433toMQTT"
+  command_topic: "home/commands/MQTTto433/PLSL_180/433_1"
+  payload_on: "5330227"
+  payload_off: "5330236"
+  retain: true
+
+- platform: mqtt
+  name: "Office Light"
+  state_topic: "home/433toMQTT" #
+  command_topic: "home/commands/MQTTto433/PLSL_180/433_1"
+  payload_on: "1332995"
+  payload_off: "1333004"
+  retain: true
+
+- platform: mqtt
+  name: "BedLedb"
+  state_topic: "home/433toMQTT"
+  command_topic: "home/commands/MQTTto433"
+  payload_on: "16726725"
+  payload_off: "16585487"
+  optimistic: false
+
+- platform: mqtt
+  name: "Office LED"
+  state_topic: "home/433toMQTT"
+  command_topic: "home/commands/MQTTto433/PLSL_180/433_1"
+  payload_on: "1332531"
+  payload_off: "1332540"
+  optimistic: false
+
+- platform: mqtt
+  name: "Belkin Switch"
+  state_topic: "home/433toMQTT"
+  command_topic: "home/commands/MQTTto433/PLSL_180/433_1"
+  payload_on: "5592407"
+  payload_off: "5592404"
+  optimistic: false
+
+# Out of comission
+#- platform: mqtt
+#  name: "Living Space LB"
+#  state_topic: "home/433toMQTT"
+#  command_topic: "home/commands/MQTTto433/PLSL_180/433_1"
+#  payload_on: "1332531"
+#  payload_off: "1332540"
+#  retain: true
+
+#433mhz LED controller
+- platform: mqtt
+  name: "XXXX"
+  state_topic: "home/433toMQTT"
+  command_topic: "home/commands/MQTTto433"
+  payload_on: "16585473"
+  payload_off: "16585473"
+  optimistic: true
+
+#Flux_led - WiFi
+- platform: flux_led
+  devices:
+    192.168.0.84:
+      name: Daylight
+    192.168.0.85:
+      name: Stairs
